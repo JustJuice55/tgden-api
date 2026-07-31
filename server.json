@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.JustJuice55/tgden",
+  "title": "tgden — Telegram catalog",
+  "description": "Search 1.4M+ public Telegram channels, chats and bots. No account, no API key, no install.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/JustJuice55/tgden-api",
+    "source": "github"
+  },
+  "websiteUrl": "https://tgden.com",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://tgden.com/api/mcp"
+    }
+  ]
+}
