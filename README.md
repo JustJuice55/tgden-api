@@ -1,6 +1,6 @@
 # tgden — Telegram catalog as an MCP server + free API
 
-**A live index of what exists *on* Telegram: 1.1M+ channels, 181k+ group chats, 142k+ bots,
+**A live index of what exists *on* Telegram: 1.29M+ channels, 283k+ group chats, 158k+ bots,
 4.5M+ indexed posts.** No Telegram account. No API key. No install.
 
 - **MCP endpoint** — `https://tgden.com/api/mcp`
@@ -170,13 +170,13 @@ which is most of the point of exposing it over MCP.
 
 | | |
 | --- | --- |
-| Channels | 1,144,692 |
-| Group chats | 181,772 |
-| Bots | 142,084 |
-| Indexed posts | 4,520,936 |
-| Marketplace listings | 22,208 |
+| Channels | 1,298,868 |
+| Group chats | 282,719 |
+| Bots | 157,909 |
+| Indexed posts | 4,955,162 |
+| Marketplace listings | 34,862 |
 
-*Census 31.07.2026. The MCP server reports these totals **live**, so what your agent sees is
+*Census 06.08.2026. The MCP server reports these totals **live**, so what your agent sees is
 current — not whatever was true when this file was written.*
 
 Public data only: channels, groups and bots that are already publicly listed or linked.
