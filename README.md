@@ -41,6 +41,10 @@ Because it never touches an account, there's nothing to leak and nothing to get 
 claude mcp add --transport http tgden https://tgden.com/api/mcp
 ```
 
+Listed in the [official MCP Registry](https://registry.modelcontextprotocol.io) as
+`io.github.JustJuice55/telegram-catalog` — clients that browse the registry find it under
+*telegram*.
+
 **Claude Desktop · Cursor · any MCP client** — add to your MCP config:
 
 ```json
