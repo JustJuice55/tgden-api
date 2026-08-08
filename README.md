@@ -1,7 +1,8 @@
 # tgden — Telegram catalog as an MCP server + free API
 
-**A live index of what exists *on* Telegram: 1.29M+ channels, 283k+ group chats, 158k+ bots,
-4.5M+ indexed posts.** No Telegram account. No API key. No install.
+**A live index of what exists *on* Telegram: 1.2M+ channels, 245k+ group chats, 160k+ bots,
+4.9M+ indexed posts.** No Telegram account. No API key. No install. CORS enabled — it runs
+from a browser tab as happily as from a server.
 
 - **MCP endpoint** — `https://tgden.com/api/mcp`
 - **REST API** — `https://tgden.com/api/catalog`
@@ -24,7 +25,7 @@ others can:
 | -------------------------- | --------------------------------- | ------------------------------------- |
 | Credentials required       | API ID/hash, phone or bot token   | **none**                              |
 | Install                    | local process (Python/Go/Node)    | **none — a hosted HTTP URL**          |
-| Can see                    | chats you already joined          | **1.4M+ public entities you haven't** |
+| Can see                    | chats you already joined          | **1.6M+ public entities you haven't** |
 | Answers *"what exists?"*   | no                                | **yes**                               |
 | Can act on your account    | yes                               | no — **read-only by design**          |
 
@@ -117,6 +118,19 @@ curl "https://tgden.com/api/catalog?q=crypto&type=channel&limit=3"
   ]
 }
 ```
+
+### Call it from the browser
+
+`Access-Control-Allow-Origin: *` is set on both read-only endpoints, so there is no proxy
+step: paste this into any page's devtools console (or a CodePen) and it answers.
+
+```js
+const r = await fetch("https://tgden.com/api/catalog?q=crypto&type=channel&limit=3");
+console.table((await r.json()).items);
+```
+
+Rate limit is shared and fair-use (~200 requests / 10s per IP). No key, no signup, no CORS
+proxy, no `Access-Control-Allow-Credentials` — nothing of yours is ever sent.
 
 ### `GET /api/suggest` — instant autocomplete
 
