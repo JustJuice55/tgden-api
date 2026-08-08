@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.JustJuice55/telegram-catalog",
   "title": "tgden — Telegram catalog & search",
-  "description": "Search 1.2M+ public Telegram channels, 245k+ group chats and 160k+ bots by topic — including full-text search over what those channels actually posted, and a regional classifieds market. Finds public communities you have NOT joined. No Telegram account, no API key, no install.",
+  "description": "Search 1.2M+ Telegram channels, 245k+ chats, 160k+ bots — no account, no key, no install.",
   "version": "1.1.0",
   "repository": {
     "url": "https://github.com/JustJuice55/tgden-api",
