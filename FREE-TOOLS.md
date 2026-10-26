@@ -10,7 +10,7 @@ cd tgden-api
 python3 -m tgden_tools --help
 ```
 
-There are no third-party Python dependencies and no account or key setup. The release also provides a `tgden-tools.pyz` download, which runs with Python 3.10+ without cloning the repository:
+There are no third-party Python dependencies and no account or key setup. [Download `tgden-tools.pyz`](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.0/tgden-tools.pyz) from the release, which runs with Python 3.10+ without cloning the repository:
 
 ```bash
 python3 tgden-tools.pyz groups --query python --limit 10 --output output
@@ -52,7 +52,7 @@ The marketplace tool exports existing listing metadata and original source links
 
 1. [Fork the public repository](https://github.com/JustJuice55/tgden-api/fork).
 2. Open **Actions** in your fork and enable workflows if prompted.
-3. Select **Run Telegram Tool**, then **Run workflow**.
+3. Select **Run a free Telegram tool**, then **Run workflow**.
 4. Select a tool and fill only the relevant inputs: query, username, country, category, result limit and days.
 5. Open the completed run and download its result artifact.
 

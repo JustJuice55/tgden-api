@@ -15,7 +15,7 @@ python3 -m tgden_tools groups --query python --limit 10 --output output
 python3 -m tgden_tools channel-posts --username telegram --limit 5 --output posts
 ```
 
-Можно скачать `tgden-tools.pyz` из выпуска и запускать его без клонирования:
+Можно [скачать `tgden-tools.pyz`](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.0/tgden-tools.pyz) и запускать его без клонирования:
 
 ```bash
 python3 tgden-tools.pyz groups --query python --limit 10 --output output
@@ -25,7 +25,7 @@ python3 tgden-tools.pyz groups --query python --limit 10 --output output
 
 1. Сделать [Fork репозитория](https://github.com/JustJuice55/tgden-api/fork).
 2. Открыть **Actions** и включить задания, если GitHub попросит.
-3. Выбрать **Run Telegram Tool → Run workflow**.
+3. Выбрать **Run a free Telegram tool → Run workflow**.
 4. Указать инструмент, запрос или имя канала и число результатов.
 5. В завершённом запуске скачать архив из **Artifacts**.
 

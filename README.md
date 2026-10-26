@@ -2,7 +2,7 @@
 
 Run Telegram tools locally or in a public GitHub Actions workflow. Export JSON and CSV. No Apify account, Telegram account, bot token or API key is required.
 
-[Run on GitHub](https://github.com/JustJuice55/tgden-api/actions/workflows/run-tool.yml) · [Free tools guide](FREE-TOOLS.md) · [По-русски](FREE-TOOLS.ru.md) · [API & MCP](#public-catalog-api-and-hosted-mcp)
+[Download one Python file](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.0/tgden-tools.pyz) · [Run on GitHub](https://github.com/JustJuice55/tgden-api/actions/workflows/run-tool.yml) · [Free tools guide](FREE-TOOLS.md) · [По-русски](FREE-TOOLS.ru.md) · [API & MCP](#public-catalog-api-and-hosted-mcp)
 
 ## Free tools
 
@@ -26,7 +26,7 @@ python3 -m tgden_tools channel-posts --username telegram --limit 5 --output post
 
 Python 3.10+ and the standard library are enough. Results are written to `result.json`, `result.csv` and `metadata.json` in the output directory.
 
-To run from the GitHub website: **fork this public repository → enable Actions → Run Telegram Tool → choose a tool → Run workflow → download the result artifact**. A GitHub login is needed for that route; the local commands need none.
+To run from the GitHub website: **fork this public repository → enable Actions → Run a free Telegram tool → choose a tool → Run workflow → download the result artifact**. A GitHub login is needed for that route; the local commands need none.
 
 These are free public-data tools with explicit limits. Catalog search is keyword-based; buyer search is a masked preview. Full partner-only semantic search, private chat access and a complete channel history are outside this free bundle. See [limits and examples](FREE-TOOLS.md).
 
