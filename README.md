@@ -10,6 +10,10 @@ from a browser tab as happily as from a server.
 
 ---
 
+## Maintain a Telegram community list
+
+[Telegram Link Checker & Community Directory](https://github.com/JustJuice55/telegram-link-checker) checks public previews beyond HTTP 200 and includes a small, regularly refreshed group directory. Use the Python CLI or reusable GitHub Action to distinguish community, bot, generic-contact and inconclusive previews. No Telegram account or API key is required.
+
 ## Why another Telegram MCP server?
 
 Every other Telegram MCP server connects to **your** Telegram account — you hand it an API
