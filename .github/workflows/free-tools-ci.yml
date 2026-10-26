@@ -1,0 +1,38 @@
+name: Free tools offline checks
+
+on:
+  push:
+    paths:
+      - 'tgden_tools/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - '.github/workflows/free-tools-ci.yml'
+      - '.github/workflows/run-tool.yml'
+  pull_request:
+    paths:
+      - 'tgden_tools/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - '.github/workflows/free-tools-ci.yml'
+      - '.github/workflows/run-tool.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test public tool adapters offline
+        run: python3 -m unittest discover -s tests -v
+      - name: Compile Python sources
+        run: python3 -m compileall -q tgden_tools scripts
+      - name: Build standalone download
+        run: python3 scripts/build_zipapp.py
+      - name: Smoke test standalone CLI
+        run: python3 dist/tgden-tools.pyz --help
