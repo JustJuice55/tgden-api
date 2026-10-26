@@ -1,0 +1,78 @@
+name: Run a free Telegram tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      tool:
+        description: 'Public tool to run'
+        type: choice
+        required: true
+        options:
+          - groups
+          - channels
+          - bots
+          - lookup
+          - classifieds
+          - buyer-preview
+          - post-search
+          - channel-posts
+      query:
+        description: 'Keyword query (search modes); optional filter for buyer-preview'
+        type: string
+        default: ''
+      username:
+        description: 'Public handle or t.me URL (lookup/channel-posts); lookup allows 10 comma-separated'
+        type: string
+        default: ''
+      country:
+        description: 'Two-letter country for classifieds/buyer-preview, e.g. vn'
+        type: string
+        default: ''
+      category:
+        description: 'Category slug for classifieds/buyer-preview, e.g. real-estate'
+        type: string
+        default: ''
+      limit:
+        description: '1–50; lookup/buyer-preview max 10; channel-posts max 20'
+        type: string
+        default: '10'
+      days:
+        description: 'Buyer-preview: 1–30; leave 7 for other modes'
+        type: string
+        default: '7'
+
+permissions:
+  contents: read
+
+jobs:
+  public-tool:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run offline checks
+        run: python3 -m unittest discover -s tests -v
+      - name: Run bounded public tool
+        env:
+          TG_TOOL: ${{ inputs.tool }}
+          TG_QUERY: ${{ inputs.query }}
+          TG_USERNAME: ${{ inputs.username }}
+          TG_COUNTRY: ${{ inputs.country }}
+          TG_CATEGORY: ${{ inputs.category }}
+          TG_LIMIT: ${{ inputs.limit }}
+          TG_DAYS: ${{ inputs.days }}
+        run: python3 scripts/run_github_tool.py
+      - name: Downloadable JSON and CSV
+        if: success()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, official action
+        with:
+          name: free-telegram-tool-results
+          path: |
+            output/result.json
+            output/result.csv
+            output/metadata.json
+          if-no-files-found: error
+          retention-days: 1

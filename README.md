@@ -1,4 +1,36 @@
-# tgden — Telegram catalog as an MCP server + free API
+# TGDen Telegram Tools — free scrapers, search and exports
+
+Run Telegram tools locally or in a public GitHub Actions workflow. Export JSON and CSV. No Apify account, Telegram account, bot token or API key is required.
+
+[Run on GitHub](https://github.com/JustJuice55/tgden-api/actions/workflows/run-tool.yml) · [Free tools guide](FREE-TOOLS.md) · [По-русски](FREE-TOOLS.ru.md) · [API & MCP](#public-catalog-api-and-hosted-mcp)
+
+## Free tools
+
+| Tool | What you get | Source |
+| --- | --- | --- |
+| `channel-posts` | Posts visible in a channel's current public web preview | Direct Telegram HTML |
+| `groups` | Public group matches for a keyword | TGDen public catalog |
+| `channels` | Public channel matches for a keyword | TGDen public catalog |
+| `bots` | Bots matching a task or keyword | TGDen public catalog |
+| `lookup` | Exact catalog matches for public usernames | TGDen public catalog |
+| `classifieds` | Rental, sale, job and service listing metadata | TGDen public marketplace |
+| `buyer-preview` | A small masked sample of classified buyer requests | TGDen public preview, at most 10 |
+| `post-search` | Matching snippets from captured public channel posts | TGDen public post index |
+
+```bash
+git clone https://github.com/JustJuice55/tgden-api.git
+cd tgden-api
+python3 -m tgden_tools groups --query python --limit 10 --output output
+python3 -m tgden_tools channel-posts --username telegram --limit 5 --output posts
+```
+
+Python 3.10+ and the standard library are enough. Results are written to `result.json`, `result.csv` and `metadata.json` in the output directory.
+
+To run from the GitHub website: **fork this public repository → enable Actions → Run Telegram Tool → choose a tool → Run workflow → download the result artifact**. A GitHub login is needed for that route; the local commands need none.
+
+These are free public-data tools with explicit limits. Catalog search is keyword-based; buyer search is a masked preview. Full partner-only semantic search, private chat access and a complete channel history are outside this free bundle. See [limits and examples](FREE-TOOLS.md).
+
+## Public catalog API and hosted MCP
 
 **A live index of what exists *on* Telegram: 1.2M+ channels, 245k+ group chats, 160k+ bots,
 4.9M+ indexed posts.** No Telegram account. No API key. No install. CORS enabled — it runs
