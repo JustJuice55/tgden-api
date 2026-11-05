@@ -32,7 +32,7 @@ These are free public-data tools with explicit limits. Catalog search is keyword
 
 ## Public catalog API and hosted MCP
 
-**A live index of what exists *on* Telegram: 1.2M+ channels, 245k+ group chats, 160k+ bots,
+**A live index of what exists *on* Telegram: 1.7M+ channels, 250k+ group chats, 228k+ bots,
 4.9M+ indexed posts.** No Telegram account. No API key. No install. CORS enabled — it runs
 from a browser tab as happily as from a server.
 
