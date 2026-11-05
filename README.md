@@ -109,11 +109,12 @@ curl -s https://tgden.com/api/mcp \
 | Tool | What it answers |
 | ---- | --------------- |
 | `search_telegram` | Full-text search across channels, group chats and bots — with subscriber/member counts, categories and trust scores. |
-| `best_channels_by_category` | *"Best Telegram channels for crypto / AI / news / gaming…"* — ranked by subscribers. |
+| `best_channels_by_category` | *"Best Telegram channels for crypto / AI / news / gaming…"* — ranked by subscribers; channels that stopped posting are skipped. |
 | `channel_stats` | Everything known about one channel, by `@username`. |
 | `search_posts` | Full-text search over recent posts — what channels actually **said**, not just their bio. |
-| `market_listings` | Real classified listings (rent, sale, services, jobs) parsed from regional Telegram groups across 🇦🇪 🇹🇷 🇹🇭 🇻🇳 🇬🇪 🇺🇸. |
+| `market_listings` | Real classified listings (rent, sale, services, jobs) parsed from regional Telegram groups across 🇦🇪 🇹🇷 🇹🇭 🇻🇳 🇺🇸. |
 | `market_stats` | Listing totals by country and type. |
+| `telegram_demand` | *"What are people looking for in Telegram in Dubai?"* — weekly index of real requests in public chats by topic and country (ads, sellers and bots excluded), with example requests; contacts redacted. |
 
 ### Resources
 
@@ -244,6 +245,7 @@ No private groups, no archives from closed communities, no personal data.
 - **Research** — map communities, track niches, study the open Telegram graph.
 - **Discovery bots** — recommend channels and chats by topic.
 - **Market intel** — what's being rented, sold and offered in regional Telegram economies.
+- **Demand intel** — what people ask for in Telegram chats, by topic and country, week over week.
 
 Machine-readable site summary for AI crawlers: <https://tgden.com/llms.txt>
 
