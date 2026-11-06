@@ -15,7 +15,7 @@ python3 -m tgden_tools groups --query python --limit 10 --output output
 python3 -m tgden_tools channel-posts --username telegram --limit 5 --output posts
 ```
 
-Можно [скачать `tgden-tools.pyz`](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.0/tgden-tools.pyz) и запускать его без клонирования:
+Можно [скачать `tgden-tools.pyz`](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.1/tgden-tools.pyz) и запускать его без клонирования:
 
 ```bash
 python3 tgden-tools.pyz groups --query python --limit 10 --output output

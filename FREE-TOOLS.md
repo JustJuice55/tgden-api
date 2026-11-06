@@ -10,7 +10,7 @@ cd tgden-api
 python3 -m tgden_tools --help
 ```
 
-There are no third-party Python dependencies and no account or key setup. [Download `tgden-tools.pyz`](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.0/tgden-tools.pyz) from the release, which runs with Python 3.10+ without cloning the repository:
+There are no third-party Python dependencies and no account or key setup. [Download `tgden-tools.pyz`](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.1/tgden-tools.pyz) from the release, which runs with Python 3.10+ without cloning the repository:
 
 ```bash
 python3 tgden-tools.pyz groups --query python --limit 10 --output output

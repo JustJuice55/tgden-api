@@ -2,7 +2,7 @@
 
 Run Telegram tools locally or in a public GitHub Actions workflow. Export JSON and CSV. No Apify account, Telegram account, bot token or API key is required.
 
-[Download one Python file](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.0/tgden-tools.pyz) · [Run on GitHub](https://github.com/JustJuice55/tgden-api/actions/workflows/run-tool.yml) · [Free tools guide](FREE-TOOLS.md) · [По-русски](FREE-TOOLS.ru.md) · [API & MCP](#public-catalog-api-and-hosted-mcp)
+[Download one Python file](https://github.com/JustJuice55/tgden-api/releases/download/tools-v1.0.1/tgden-tools.pyz) · [Run on GitHub](https://github.com/JustJuice55/tgden-api/actions/workflows/run-tool.yml) · [Free tools guide](FREE-TOOLS.md) · [По-русски](FREE-TOOLS.ru.md) · [API & MCP](#public-catalog-api-and-hosted-mcp)
 
 ## Free tools
 
