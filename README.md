@@ -32,8 +32,8 @@ These are free public-data tools with explicit limits. Catalog search is keyword
 
 ## Public catalog API and hosted MCP
 
-**A live index of what exists *on* Telegram: 1.7M+ channels, 250k+ group chats, 228k+ bots,
-4.9M+ indexed posts.** No Telegram account. No API key. No install. CORS enabled — it runs
+**A live index of what exists *on* Telegram: 1.8M+ channels, 448k+ group chats, 228k+ bots,
+plus live marketplace listings and the weekly demand index.** No Telegram account. No API key. No install. CORS enabled — it runs
 from a browser tab as happily as from a server.
 
 - **MCP endpoint** — `https://tgden.com/api/mcp`
@@ -111,7 +111,7 @@ curl -s https://tgden.com/api/mcp \
 | `search_telegram` | Full-text search across channels, group chats and bots — with subscriber/member counts, categories and trust scores. |
 | `best_channels_by_category` | *"Best Telegram channels for crypto / AI / news / gaming…"* — ranked by subscribers; channels that stopped posting are skipped. |
 | `channel_stats` | Everything known about one channel, by `@username`. |
-| `search_posts` | Full-text search over recent posts — what channels actually **said**, not just their bio. |
+| `search_posts` | Full-text search over listings on tgden's public Telegram storefronts (TH·AE·TR·VN·US·RU) — what people offer and seek, with price, place and date. Channel posts are not indexed: use `search_telegram` for channels. |
 | `market_listings` | Real classified listings (rent, sale, services, jobs) parsed from regional Telegram groups across 🇦🇪 🇹🇷 🇹🇭 🇻🇳 🇺🇸. |
 | `market_stats` | Listing totals by country and type. |
 | `telegram_demand` | *"What are people looking for in Telegram in Dubai?"* — weekly index of real requests in public chats by topic and country (ads, sellers and bots excluded), with example requests; contacts redacted. |
@@ -228,7 +228,6 @@ which is most of the point of exposing it over MCP.
 | Channels | 1,298,868 |
 | Group chats | 282,719 |
 | Bots | 157,909 |
-| Indexed posts | 4,955,162 |
 | Marketplace listings | 34,862 |
 
 *Census 06.08.2026. The MCP server reports these totals **live**, so what your agent sees is
