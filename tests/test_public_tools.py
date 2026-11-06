@@ -143,21 +143,37 @@ class PublicToolTests(unittest.TestCase):
         with self.assertRaises(SourceError):
             run_tool('buyer-preview', query='housing', fetch_json=lambda url: {'preview': [], 'more': 'yes'})
 
-    def test_post_search_uses_channel_index_and_generated_message_url(self):
+    def test_post_search_searches_storefront_listings_not_a_retired_channel_index(self):
+        # 06.11: channel posts are no longer indexed (retired 20.06, capture off 29.08) —
+        # kind=channel has returned 0 for every query since. What the index holds is the
+        # listings published on TGDen's own Telegram storefronts (kind=chat).
         calls = []
         def fetch(url):
             calls.append(url)
-            return {'items': [{'channel_username': 'Telegram', 'telegram_msg_id': 123,
-                    'snippet': 'Hello', 'posted_at': '2026-10-26', 'views': 300,
-                    'source': {'secret': 'hidden'}, 'tme_url': 'https://evil.example',
-                    'raw': 'hidden', 'sender_id': 'hidden'}], 'total': 1}
-        result = run_tool('post-search', query='telegram', limit=1, fetch_json=fetch)
-        self.assertEqual(result['items'][0]['tme_url'], 'https://t.me/telegram/123')
-        self.assertNotIn('evil', str(result))
-        self.assertNotIn('hidden', str(result))
+            return {'items': [
+                {'channel_username': '-1004386793535', 'telegram_msg_id': 7, 'snippet': 'Sale - mouse pad · sale · goods'},
+                {'channel_username': 'OTC_Thailand', 'telegram_msg_id': 8,
+                 'snippet': 'Exchange of cash rubles and USDT for Bitcoin · exchange · offer · Bangkok'},
+                {'channel_username': 'OTC_Vietnam', 'telegram_msg_id': 9, 'snippet': 'Куплю 1000 USDT по 25500 · exchange · seek'},
+                {'channel_username': 'OTC_Thailand', 'telegram_msg_id': 123,
+                 'snippet': 'Rent - studio in Rawai for a month · rent · condo · Phuket', 'posted_at': '2026-10-26',
+                 'views': None, 'source': {'secret': 'hidden'}, 'tme_url': 'https://evil.example',
+                 'raw': 'hidden', 'sender_id': 'hidden'},
+                {'channel_username': 'OTC_UAE', 'telegram_msg_id': 124, 'snippet': 'Rent - 1BR in Dubai Marina · rent · apartment'},
+            ], 'total': 5}
+        result = run_tool('post-search', query='studio', limit=2, fetch_json=fetch)
         params = parse_qs(urlsplit(calls[0]).query)
-        self.assertEqual(params['kind'], ['channel'])
-        self.assertEqual(params['min_views'], ['0'])
+        self.assertEqual(params['kind'], ['chat'])
+        self.assertNotIn('min_views', params)
+        self.assertGreater(int(params['limit'][0]), 2, 'filter before the cut: ask for more than the limit')
+        self.assertEqual([i['telegram_msg_id'] for i in result['items']], [123, 124])
+        self.assertEqual(result['items'][0]['tme_url'], 'https://t.me/otc_thailand/123')
+        for bad in ('USDT', 'evil', 'hidden', '-1004386793535'):
+            self.assertNotIn(bad, str(result))
+        said = (result['source'] + ' ' + result['scope']).lower()
+        self.assertIn('listing', said)
+        self.assertNotIn('channel-post', said)
+        self.assertNotIn("channel index", said)
 
     def test_valid_empty_results_are_distinct_from_bad_schema(self):
         for tool in ('groups', 'channels', 'bots', 'classifieds', 'post-search'):

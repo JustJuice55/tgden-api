@@ -33,8 +33,8 @@ python3 -m tgden_tools classifieds --country th --limit 10 --output ads
 # Get a small masked buyer-request preview from the existing public endpoint.
 python3 -m tgden_tools buyer-preview --country vn --category real-estate --days 30 --limit 3 --output buyers
 
-# Search captured channel-post snippets.
-python3 -m tgden_tools post-search --query "OpenAI" --limit 10 --output matches
+# Search the listings that TGDen's public Telegram storefronts have published.
+python3 -m tgden_tools post-search --query "studio Phuket" --limit 10 --output matches
 
 # Read the channel's current public web preview directly from Telegram.
 python3 -m tgden_tools channel-posts --username telegram --limit 5 --output posts
@@ -47,6 +47,8 @@ python3 -m tgden_tools channel-posts --username telegram --limit 5 --output post
 `buyer-preview` uses the same masked public preview available on TGDen. It is limited to 10 rows and the endpoint's existing rate limit. It does not export sender identities or contact details. The full partner product includes capabilities outside this free sample.
 
 The marketplace tool exports existing listing metadata and original source links. Asking prices are not transactions or comparable market medians. The free tools do not calculate price statistics.
+
+`post-search` is a search over the listings published on TGDen's public Telegram storefronts, not a search of channel posts. Rows without a public storefront handle and currency-exchange offers are excluded, so the results cover ordinary goods, rentals and services.
 
 ## Run on GitHub
 
@@ -76,7 +78,7 @@ Inputs, logs and artifacts in a public workflow can be visible to other people. 
 | lookup | Exact-handle public catalog searches | Up to 10 usernames |
 | classifieds | Public marketplace listings | Up to 50 requested rows |
 | buyer-preview | Public masked demand preview | Up to 10 rows; source rate limit applies |
-| post-search | Captured public channel snippets | Up to 50 requested matches |
+| post-search | Public TGDen storefront listing ads | Up to 50 requested matches |
 | channel-posts | One public Telegram preview page | Only the posts present in that page |
 
 The keyword search tools do not accept a country filter. Country and category inputs are intended for marketplace and buyer-preview modes. Unsupported input is rejected rather than silently ignored.

@@ -82,6 +82,20 @@ def _public_handle(row, key="username"):
     return value.lower()
 
 
+_EXCHANGE_TERMS = ("usdt", "обменник", "crypto exchange", "money changer")
+
+
+def _exchange_listing(row):
+    """A storefront listing that is a currency or crypto exchange offer, not a good or service."""
+    snippet = row.get("snippet")
+    if not isinstance(snippet, str):
+        return False
+    lowered = snippet.lower()
+    if any(term in lowered for term in _EXCHANGE_TERMS):
+        return True
+    return any(part.strip().lower() == "exchange" for part in snippet.split("·"))
+
+
 def _catalog_row(row, expected=None):
     username = _public_handle(row)
     kind = row.get("entity_type")
@@ -250,19 +264,33 @@ def run_tool(tool, *, query='', username='', country='', category='', limit=10, 
         result["source"] = "TGDen public masked buyer-intent preview"
         result["scope"] = "Limited masked preview; no author/contact identities or paid semantic/group-demand parity."
     elif tool == "post-search":
-        data = api("posts/search", {"q": query, "kind": "channel", "limit": limit, "min_views": 0})
-        for row in _rows(data, "items")[:limit]:
+        # The channel-post corpus was retired (20.06): kind=channel answers zero for every
+        # query. What the index holds are the listings published on TGDen's own storefronts,
+        # so kind=chat is the honest request surface. Filter the whole padded batch
+        # before cutting to the requested limit: exchange offers and handle-less
+        # storefront rows must not consume the user's limit.
+        data = api("posts/search", {"q": query, "kind": "chat", "limit": min(50, limit * 3)})
+        matches = []
+        for row in _rows(data, "items"):
             handle = _public_handle(row, "channel_username")
-            link = _message_url(handle, row.get("telegram_msg_id")) if handle else None
+            if not handle or _exchange_listing(row):
+                continue
+            link = _message_url(handle, row.get("telegram_msg_id"))
             if not link:
                 continue
             item = {"channel_username": handle, "telegram_msg_id": row["telegram_msg_id"], "tme_url": link}
-            item.update(_copy_text(row, ("snippet", "posted_at")))
+            item.update(_copy_text(row, ("snippet",)))
+            posted = row.get("posted_at")
+            if isinstance(posted, str):
+                item["posted_at"] = posted
+            elif _count(posted) and 10 ** 8 <= posted < 10 ** 11:  # plausible epoch seconds
+                item["posted_at"] = datetime.fromtimestamp(posted, timezone.utc).isoformat(timespec="seconds")
             if _count(row.get("views")):
                 item["views"] = row["views"]
-            result["items"].append(item)
-        result["source"] = "TGDen public indexed channel-post search"
-        result["scope"] = "Snippets from TGDen's channel index, not a search of all Telegram or complete post history."
+            matches.append(item)
+        result["items"] = matches[:limit]
+        result["source"] = "TGDen public storefront listing search"
+        result["scope"] = "Listings published on TGDen's public Telegram storefronts; not a search of channel posts and not all of Telegram."
     else:
         handle = normalize_username(username)
         url = "https://t.me/s/" + handle

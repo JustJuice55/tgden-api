@@ -15,7 +15,7 @@ Run Telegram tools locally or in a public GitHub Actions workflow. Export JSON a
 | `lookup` | Exact catalog matches for public usernames | TGDen public catalog |
 | `classifieds` | Rental, sale, job and service listing metadata | TGDen public marketplace |
 | `buyer-preview` | A small masked sample of classified buyer requests | TGDen public preview, at most 10 |
-| `post-search` | Matching snippets from captured public channel posts | TGDen public post index |
+| `post-search` | Search over the listings published on TGDen's public Telegram storefronts | TGDen public storefront listings |
 
 ```bash
 git clone https://github.com/JustJuice55/tgden-api.git
