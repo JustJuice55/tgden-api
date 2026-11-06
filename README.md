@@ -42,6 +42,13 @@ from a browser tab as happily as from a server.
 
 ---
 
+## What people ask for in Telegram
+
+[Telegram Demand Index](https://github.com/JustJuice55/telegram-demand-index) — a daily, open
+count of requests in public Telegram chats by country and niche (services, goods, real estate,
+jobs, freight), as CSV and JSON with a day-by-day history. It is the `telegram_demand` tool
+below, published as a dataset.
+
 ## Maintain a Telegram community list
 
 [Telegram Link Checker & Community Directory](https://github.com/JustJuice55/telegram-link-checker) checks public previews beyond HTTP 200 and includes a small, regularly refreshed group directory. Use the Python CLI or reusable GitHub Action to distinguish community, bot, generic-contact and inconclusive previews. No Telegram account or API key is required.
@@ -114,7 +121,7 @@ curl -s https://tgden.com/api/mcp \
 | `search_posts` | Full-text search over listings on tgden's public Telegram storefronts (TH·AE·TR·VN·US·RU) — what people offer and seek, with price, place and date. Channel posts are not indexed: use `search_telegram` for channels. |
 | `market_listings` | Real classified listings (rent, sale, services, jobs) parsed from regional Telegram groups across 🇦🇪 🇹🇷 🇹🇭 🇻🇳 🇺🇸. |
 | `market_stats` | Listing totals by country and type. |
-| `telegram_demand` | *"What are people looking for in Telegram in Dubai?"* — weekly index of real requests in public chats by topic and country (ads, sellers and bots excluded), with example requests; contacts redacted. |
+| `telegram_demand` | *"What are people looking for in Telegram in Dubai?"* — weekly index of real requests in public chats by topic and country (ads, sellers and bots excluded), with example requests; contacts redacted. Daily open dataset: [telegram-demand-index](https://github.com/JustJuice55/telegram-demand-index). |
 
 ### Resources
 
